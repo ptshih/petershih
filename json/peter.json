@@ -1,0 +1,20 @@
+{
+  "email": "ptshih@gmail.com",
+  "first_name": "Peter",
+  "last_name": "Shih",
+  "photo": "",
+  "bio": "Hello World!",
+  "stack": [
+    "Node.js / Express",
+    "React / Redux",
+    "MongoDB / Mongoose",
+    "ES6 / Babel",
+    "WebSockets",
+    "Mocha / Chai",
+    "CSS / SCSS / CSS Modules",
+    "ESLint / StyleLint",
+    "Webpack"
+  ],
+  "links": [],
+  "projects": []
+}

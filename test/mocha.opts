@@ -1,0 +1,8 @@
+--require ./bin/test.js
+--reporter spec
+--bail
+--check-leaks
+--recursive
+--colors
+--timeout 60000
+--slow 300

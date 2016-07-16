@@ -1,0 +1,24 @@
+/**
+ * Override Bootstrap styles that you can't modify via variables here.
+ */
+
+body {
+  font-weight: 300;
+}
+
+// When columns are stacked
+// Add a bottom margin
+// XS and S
+.col-xs-12 {
+  margin-bottom: 0.5rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.form-group {
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,13 @@
+/* TEAM */
+
+  Name: Peter Stone
+  Site: https://www.impeterstone.com
+  Location: San Francisco & New York City
+
+  Name: Edward Junprung
+  Site: https://github.com/ejunprung
+  Location: San Francisco
+
+  Name: Bruno Marinho
+  Site: https://github.com/brunomarinho
+  Location: Rio de Janeiro, Brazil

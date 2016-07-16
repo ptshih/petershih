@@ -1,0 +1,14 @@
+.wrapper {
+  max-width: 940px;
+  padding: 20px;
+
+  // Medium devices (tablets, 48em and up)
+  @media (min-width: 48em) {
+    padding: 60px;
+  }
+}
+
+.portrait {
+  width: 152px;
+  border-radius: 4px;
+}

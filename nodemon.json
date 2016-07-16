@@ -1,0 +1,12 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "assets",
+    "public",
+    "test",
+    "workers"
+  ],
+  "ext": "js jsx json"
+}
