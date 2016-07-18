@@ -17,19 +17,22 @@ module.exports = [{
   loader: 'file?mimetype=application/font-woff',
 }, {
   test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-  loader: 'file?mimetype=application/font-woff',
+  loader: 'file?mimetype=application/font-woff2',
 }, {
   test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-  loader: 'file?mimetype=application/octet-stream',
+  loader: 'file?mimetype=application/x-font-truetype',
 }, {
   test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-  loader: 'file',
+  loader: 'file?mimetype=application/vnd.ms-fontobject',
+}, {
+  test: /\.otf(\?v=\d+\.\d+\.\d+)?$/,
+  loader: 'file?mimetype=application/x-font-opentype',
 }, {
   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-  loader: 'url?limit=10000&mimetype=image/svg+xml',
+  loader: 'file?mimetype=image/svg+xml',
 }, {
   test: /\.(png|jpg|jpeg|gif)$/,
-  loader: 'url?limit=10000',
+  loader: 'file',
 }, {
   test: /\.(wav|mp3)$/,
   loader: 'file',

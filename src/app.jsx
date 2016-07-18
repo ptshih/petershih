@@ -27,7 +27,14 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 // Custom creation fn to pass down store in props to every component
 // https://github.com/reactjs/react-router/issues/1857
-const createElement = (Component, props) => <Component store={store} {...props} />;
+const createElement = (Component, elementProps) => {
+  // Fetch Component if applicable
+  if (Component.fetchData) {
+    const { params, location } = elementProps;
+    Component.fetchData({ store, params, location });
+  }
+  return <Component store={store} {...elementProps} />;
+};
 
 function render() {
   ReactDOM.render((

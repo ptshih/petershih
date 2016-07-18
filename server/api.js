@@ -31,6 +31,9 @@ app.use((req, res, next) => {
   // Enable mock api requests if mongodb is not connected
   req.mock = !nconf.get('MONGODB_URL');
 
+  // TODO: force mock api
+  req.mock = true;
+
   next();
 });
 

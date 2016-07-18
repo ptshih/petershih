@@ -15,6 +15,28 @@
     "ESLint / StyleLint",
     "Webpack"
   ],
-  "links": [],
-  "projects": []
+  "links": [{
+    "text": "LinkedIn",
+    "url": "https://www.linkedin.com/in/ptshih"
+  }, {
+    "text": "Github",
+    "url": "https://www.github.com/ptshih"
+  }],
+  "projects": [{
+    "text": "Lunchbox",
+    "url": "/lunchbox",
+    "description": "Food discovery for iPhone and iPad"
+  }, {
+    "text": "Blink",
+    "url": "https://blinkforhome.com/product-pricing",
+    "description": "Example of Celery in action"
+  }, {
+    "text": "Plug Panda",
+    "url": "https://www.plugpanda.com",
+    "description": "Charge monitoring for Electric Vehicles"
+  }, {
+    "text": "Woodhouse",
+    "url": "https://github.com/airbrite/woodhouse",
+    "description": "View bindings for Backbone.js"
+  }]
 }

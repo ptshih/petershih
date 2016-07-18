@@ -1,21 +1,21 @@
-const fs = require('fs');
-const path = require('path');
-
-const assetsPath = path.join(__dirname, '..', 'assets.json');
+import fs from 'fs';
+import path from 'path';
 
 // React
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import Helmet from 'react-helmet';
 
 // Router
 import { RouterContext, match } from 'react-router';
-import routes from '../routes';
+import routes from '../src/routes';
 
 // Redux
 import { Provider } from 'react-redux';
-import configureStore from '../store/configure-store';
+import configureStore from '../src/store/configure-store';
 
 // Assets are cached for `production` only
+const assetsPath = path.join(__dirname, '..', 'assets.json');
 let cachedAssets;
 
 module.exports = (env) => (req, res, next) => {
@@ -24,6 +24,7 @@ module.exports = (env) => (req, res, next) => {
     // Initialize Store
     const store = configureStore();
 
+    // https://github.com/reactjs/react-router/blob/master/docs/guides/ServerRendering.md
     match({
       routes,
       location: req.url,
@@ -36,22 +37,35 @@ module.exports = (env) => (req, res, next) => {
         return res.status(404).send('Not found');
       }
 
-      // TODO: Fetch component(s) data
-      // console.log(renderProps.components)
+      // Fetch data for all components for route
+      const promises = [];
+      const { params, location } = renderProps;
+      renderProps.components.forEach((Component) => {
+        if (Component.fetchData) {
+          promises.push(Component.fetchData({ store, params, location }));
+        }
+      });
 
-      // Render Component to an html string
-      const html = ReactDOM.renderToString((
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
-        </Provider>
-      ));
+      return Promise.all(promises).then(() => {
+        // Render Component to an html string
+        const html = ReactDOM.renderToString((
+          <Provider store={store}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        ));
 
-      // Render express view
-      return res.render('app', {
-        title: 'Peter Shih',
-        env,
-        html,
-        assets,
+        const initialState = store.getState();
+
+        const head = Helmet.rewind();
+
+        // Render express view
+        return res.render('app', {
+          env,
+          head,
+          html,
+          assets,
+          initialState,
+        });
       });
     });
   }

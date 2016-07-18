@@ -71,15 +71,15 @@ See `package.json -> scripts -> start`.
 - `/bin/build.js` - uses webpack to build production assets
 - `/bin/webpack-dev-server.js` - in `development`, launches the webpack livereload proxy
 
-- `/webpack/config.dev.webpack.js` - webpack config for `development`
-- `/webpack/config.prod.webpack.js` - webpack config for `production`
+- `/webpack/config.dev.babel.js` - webpack config for `development`
+- `/webpack/config.prod.babel.js` - webpack config for `production`
 - `/webpack/loaders.js` - shared webpack loaders for all environments
 - `/webpack/build-css-loader.js` - generates css/scss/less and css modules loaders
 
 ---
 
-### Universal Javascript Issues
+### Universal Javascript Known Issues
 
-- Can `import/require` stylesheets... but hacky
-- Can't `import/require` images... without using: https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-- Or use Babel for server code: https://github.com/halt-hammerzeit/universal-webpack
+- Can't use https://github.com/tcoopman/image-webpack-loader because of `images-require-hook`
+- Can `import/require` stylesheets using `css-modules-require-hook` hack
+- Can `import/require` images using `images-require-hook` hack

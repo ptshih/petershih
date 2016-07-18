@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from '../reducers';
-// import apiMiddleware from '../middleware/api';
-// import apiService from '../services/api';
+import apiMiddleware from '../middleware/api';
+import api from '../core/api';
 
 export default function configureStore(initialState) {
   // Optionally pass second argument for initialState
@@ -11,7 +11,7 @@ export default function configureStore(initialState) {
     initialState,
     applyMiddleware(
       thunkMiddleware,
-      // apiMiddleware(apiService)
+      apiMiddleware(api)
     )
   );
 

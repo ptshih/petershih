@@ -18,10 +18,6 @@ const envs = {
     export: true,
     type: Number,
   },
-  VERSION: {
-    required: false,
-    export: true,
-  },
   HOST: {
     required: false,
     export: true,

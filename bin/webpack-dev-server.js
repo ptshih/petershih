@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('../webpack/config.dev.webpack.js');
+const webpackConfig = require('../webpack/config.dev.babel.js');
 const webpackCompiler = webpack(webpackConfig);
 const webpackDevServer = new WebpackDevServer(webpackCompiler, {
   publicPath: webpackConfig.output.publicPath,

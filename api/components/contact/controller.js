@@ -18,9 +18,14 @@ module.exports = class ContactController extends Controller {
 
   fetchPeter(req, res, next) {
     if (req.mock) {
-      const peter = jsonfile.readFileSync(`${__dirname}/../../../json/peter.json`);
-      res.data = peter;
-      next();
+      try {
+        const peter = jsonfile.readFileSync(`${__dirname}/../../../json/peter.json`);
+        res.data = peter;
+        next();
+      } catch (err) {
+        next(err);
+      }
+
       return;
     }
 

@@ -21,6 +21,13 @@ const Index = (props) => {
     return <link href={css} rel="stylesheet" />;
   }
 
+  function getInitialState() {
+    // Get the app js url from webpack assets
+    const initialState = `window.__INITIAL_STATE__=${JSON.stringify(props.initialState)};`;
+
+    return <script dangerouslySetInnerHTML={{ __html: initialState }} />;
+  }
+
   function getJS() {
     // Get the app js url from webpack assets
     const js = props.assets.app.js;
@@ -54,24 +61,21 @@ const Index = (props) => {
   //   );
   // }
 
-  // Injects `window.env`
-  const envScript = `window.env=${JSON.stringify(props.env)};`;
-
   return (
-    <html>
+    <html {...props.head.htmlAttributes.toComponent()}>
       <head>
+        {props.head.title.toComponent()}
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <title>{props.title}</title>
-        <meta name="description" content="Get Smarter About Your Traffic" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        {props.head.meta.toComponent()}
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
         <link rel="author" href="/humans.txt" />
+        {props.head.link.toComponent()}
         {getCSS()}
-        <script dangerouslySetInnerHTML={{ __html: envScript }} />
       </head>
 
       <body>
@@ -84,6 +88,7 @@ const Index = (props) => {
 
         <div id="app" dangerouslySetInnerHTML={{ __html: props.html }}></div>
 
+        {getInitialState()}
         {getJS()}
       </body>
     </html>
@@ -91,10 +96,11 @@ const Index = (props) => {
 };
 
 Index.propTypes = {
-  title: React.PropTypes.string,
   env: React.PropTypes.object,
+  head: React.PropTypes.object,
   html: React.PropTypes.string,
   assets: React.PropTypes.object,
+  initialState: React.PropTypes.object,
 };
 
 module.exports = Index;

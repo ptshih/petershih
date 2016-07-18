@@ -36,8 +36,7 @@ const _request = (options) => request(options).then((body) => body.data).catch((
 const _requestDebounced = debounce(_request, 2000);
 
 export default {
-  // TODO: use environment configuration instead
-  basePath: `${window.location.origin}/api`,
+  basePath: process.env.API_HOST,
 
   getAuthHeaders() {
     return auth.buildAuthHeaders();

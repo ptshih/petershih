@@ -2,9 +2,12 @@ import styles from './lunchbox.scss';
 
 import React from 'react';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 
 const Lunchbox = () => (
   <div className={styles.wrapper}>
+    <Helmet title="Lunchbox" />
+
     <div className="row">
       <div className="col-xs-12">
         <Link to="/">Back</Link>

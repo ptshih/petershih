@@ -5,12 +5,17 @@
  * - frontend app
  */
 
+// Constants
+// const ONEYEAR = 31536000000;
+const ONEDAY = 86400000;
+
 // Dependencies
 import http from 'http';
 import express from 'express';
 import vhost from 'vhost';
 
 // Express Middleware
+import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 
@@ -33,6 +38,11 @@ app.enable('trust proxy');
 
 // Helmet HTTP headers
 app.use(helmet());
+
+// Enable CORS
+app.use(cors({
+  maxAge: ONEDAY,
+}));
 
 // Gzip compression (needs to be before static to compress assets)
 app.use(compression());

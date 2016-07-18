@@ -3,7 +3,7 @@
  */
 
 // Only used for universal mode
-// import 'babel-polyfill';
+import 'babel-polyfill';
 
 // Constants
 const ONEYEAR = 31536000000;
@@ -26,8 +26,8 @@ import favicon from 'serve-favicon';
 // Load environment
 import env from './env';
 
-// import render from './server/universal';
-import render from './spa';
+import render from './universal';
+// import render from './spa';
 
 // Create proxy server
 const proxy = httpProxy.createProxyServer();

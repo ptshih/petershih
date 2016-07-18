@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpackConfig = require('../webpack/config.prod.webpack.js');
+const webpackConfig = require('../webpack/config.prod.babel.js');
 
 webpack(webpackConfig).run((err, stats) => {
   if (err) {

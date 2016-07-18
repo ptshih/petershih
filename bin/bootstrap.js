@@ -1,9 +1,8 @@
-/* eslint no-var: 0 no-underscore-dangle: 0, global-require: 0 */
+/* eslint no-underscore-dangle: 0, global-require: 0 */
 
-var path = require('path');
-var nconf = require('nconf');
-var babelConfig = require('../package.json').babel;
-var VERSION = require('../package.json').version;
+const path = require('path');
+const nconf = require('nconf');
+const babelConfig = require('../package.json').babel;
 
 // global.rfr = require('rfr');
 
@@ -18,7 +17,7 @@ require('dotenv').config({
 });
 
 nconf.env().defaults({
-  VERSION: VERSION || new Date().getTime(),
+  BROWSER: false,
   NODE_ENV: 'development',
   HOST: 'http://www.petershih.dev:9090',
   API_HOST: 'http://api.petershih.dev:9090',
@@ -32,13 +31,15 @@ nconf.env().defaults({
 require('babel-core/register')(babelConfig);
 
 // Support isomorphic CSS imports
-// require('css-modules-require-hook')({
-//   generateScopedName: process.env.NODE_ENV === 'production' ?
-//     '[hash:base64]' :
-//     '[name]---[local]---[hash:base64:5]',
-//   rootDir: './src',
-//   extensions: ['.scss'],
-// });
+require('css-modules-require-hook')({
+  generateScopedName: process.env.NODE_ENV === 'production' ?
+    '[hash:base64]' :
+    '[name]---[local]---[hash:base64:5]',
+  rootDir: './src',
+  extensions: ['.scss'],
+});
+
+require('../modules/images-require-hook')('.jpg');
 
 if (process.env.NODE_ENV !== 'production') {
   require('./webpack-dev-server');
