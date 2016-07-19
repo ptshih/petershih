@@ -1,41 +1,47 @@
 import _ from 'lodash';
 import nconf from 'nconf';
-import debug from 'modules/debug';
 
 const envs = {
-  // Build
+  // TELL WEBPACK TO BUILD POSTINSTALL
   BUILD_ASSETS: {
     required: false,
   },
-
-  // Application
   NODE_ENV: {
     required: true,
     export: true,
   },
+  // DO NOT DEFINE FOR HEROKU
   PORT: {
     required: true,
     export: true,
     type: Number,
   },
-  HOST: {
+  URL: {
     required: false,
     export: true,
   },
-  API_HOST: {
+  API_URL: {
     required: false,
     export: true,
   },
-  WS_ADDRESS: {
+  API_VHOST: {
     required: false,
     export: true,
   },
   DEBUG_PREFIX: {
     required: false,
   },
+
+  // UNUSED
+  WS_ADDRESS: {
+    required: false,
+    export: true,
+  },
+  // UNUSED
   CLIENT_TOKEN: {
     required: false,
   },
+  // UNUSED
   WORKER_TOKEN: {
     required: false,
   },
@@ -74,7 +80,7 @@ _.each(envs, (envProps, envName) => {
 
   // Required
   if (envProps.required && envVal === '[UNDEFINED]') {
-    debug.error(`Missing ENV Variable: ${envName}. Check your .env file.`);
+    console.error(`├── Missing ENV Variable: ${envName}. Check your .env file.`);
     process.exit(1);
   }
 
@@ -93,7 +99,7 @@ _.each(envs, (envProps, envName) => {
     env[envName] = envVal;
   }
 
-  debug.info(`├── ${envName}=${envVal} ──┤`);
+  console.log(`├── ${envName}=${envVal} ──┤`);
 });
 
 module.exports = env;

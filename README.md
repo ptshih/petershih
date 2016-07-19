@@ -11,8 +11,9 @@
 NODE_ENV=development
 DEBUG_PREFIX=...
 PORT=3000
-HOST=http://www.domain.dev:3000
-API_HOST=http://api.domain.dev:3000
+URL=http://www.domain.dev:3000
+API_URL=http://api.domain.dev:3000
+API_VHOST=api.domain.*
 MONGODB_URL=127.0.0.1:27017/db
 ```
 
@@ -34,7 +35,7 @@ MONGODB_URL=127.0.0.1:27017/db
 
 ### Building Production Assets Locally
 
-- Running `npm run build` will create the `/assets` folder and a `/assets.json` manifest file
+- Running `npm run build` will create the `/assets` folder
 
 ### Node Memory and GC Optimization
 
@@ -67,14 +68,31 @@ See `package.json -> scripts -> start`.
 
 ### Files
 
+#### /bin
+
 - `/bin/bootstrap.js` - launches the app, depends on `NODE_ENV`
 - `/bin/build.js` - uses webpack to build production assets
 - `/bin/webpack-dev-server.js` - in `development`, launches the webpack livereload proxy
 
-- `/webpack/config.dev.babel.js` - webpack config for `development`
-- `/webpack/config.prod.babel.js` - webpack config for `production`
+#### /webpack
+
+- `/webpack/webpack.config.js` - webpack config depends on `NODE_ENV`
 - `/webpack/loaders.js` - shared webpack loaders for all environments
-- `/webpack/build-css-loader.js` - generates css/scss/less and css modules loaders
+- `/webpack/plugins.js` - shared webpack plugins for all environments
+- `/webpack/build-define.js` - generates environment variables to be passed to the app
+- `/webpack/build-css-loaders.js` - generates css/scss/less and css modules loaders (postcss)
+
+#### /server
+
+- `./server/index.js` - the primary express server which utilizes 2 `vhosts`, one for the `app` and one for the `api`
+
+#### /src
+
+- This is where the client-side React app lives
+
+#### /api
+
+- This is where the backend api lives
 
 ---
 

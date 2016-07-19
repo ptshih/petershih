@@ -42,4 +42,3 @@ newrelic_agent.log
 # Custom
 .env
 assets
-assets.json

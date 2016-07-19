@@ -1,5 +1,7 @@
+require('babel-core/register')(require('../package.json').babel);
+
 const webpack = require('webpack');
-const webpackConfig = require('../webpack/config.prod.babel.js');
+const webpackConfig = require('../webpack/webpack.config.js');
 
 webpack(webpackConfig).run((err, stats) => {
   if (err) {

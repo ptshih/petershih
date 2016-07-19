@@ -36,7 +36,7 @@ const _request = (options) => request(options).then((body) => body.data).catch((
 const _requestDebounced = debounce(_request, 2000);
 
 export default {
-  basePath: process.env.API_HOST,
+  baseUrl: process.env.API_URL,
 
   getAuthHeaders() {
     return auth.buildAuthHeaders();
@@ -51,7 +51,7 @@ export default {
 
     // Url from Path
     if (options.path) {
-      options.url = this.basePath + options.path;
+      options.url = this.baseUrl + options.path;
       delete options.path;
     }
 
@@ -73,7 +73,7 @@ export default {
   login: Promise.method((email, password) => {
     return _request({
       method: 'POST',
-      url: `${this.basePath}/login`,
+      url: `${this.baseUrl}/login`,
       json: {
         email,
         password,
@@ -88,7 +88,7 @@ export default {
   register: Promise.method((email, password) => {
     return _request({
       method: 'POST',
-      url: `${this.basePath}/register`,
+      url: `${this.baseUrl}/register`,
       json: {
         email,
         password,
@@ -103,7 +103,7 @@ export default {
   forgotPassword: Promise.method((email) => {
     return _request({
       method: 'POST',
-      url: `${this.basePath}/forgot_password`,
+      url: `${this.baseUrl}/forgot_password`,
       json: {
         email,
       },
@@ -113,7 +113,7 @@ export default {
   resetPassword: Promise.method((token, password) => {
     return _request({
       method: 'POST',
-      url: `${this.basePath}/reset_password`,
+      url: `${this.baseUrl}/reset_password`,
       json: {
         token,
         password,

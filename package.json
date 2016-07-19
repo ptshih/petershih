@@ -40,6 +40,8 @@
     "helmet": "2.1.1",
     "http-proxy": "1.14.0",
     "image-webpack-loader": "2.0.0",
+    "images-require-hook": "1.0.1",
+    "isomorphic-style-loader": "1.0.0",
     "json-loader": "0.5.4",
     "jsonfile": "2.3.1",
     "less": "2.7.1",
@@ -104,6 +106,7 @@
     "sass-lint": "1.8.2",
     "sinon": "1.17.4",
     "sinon-as-promised": "4.0.2",
+    "stylelint-config-standard": "11.0.0",
     "webpack-dev-server": "1.14.1"
   },
   "babel": {

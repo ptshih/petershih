@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import express from 'express';
-import debug from 'modules/debug';
 
 /**
  * Extends `Express.Router` with additional features
@@ -38,7 +37,7 @@ module.exports = (options, controllers) => {
         _.forEach(controller.routes, (route) => {
           // If no route path or action is defined, skip
           if (!_.isString(route.path) || !_.isFunction(route.action)) {
-            debug.warn('Skipping invalid route...');
+            console.warn('Skipping invalid route...');
             return;
           }
 
@@ -48,7 +47,7 @@ module.exports = (options, controllers) => {
 
           // If path/method has already been defined, skip
           if (paths[path] === method) {
-            debug.warn('Skipping duplicate route: [%s] %s', method, path);
+            console.warn('Skipping duplicate route: [%s] %s', method, path);
             return;
           }
 
@@ -80,7 +79,7 @@ module.exports = (options, controllers) => {
 
       // Debug logging
       _.forEach(router.routes, (route) => {
-        debug.info('├── Route [%s] %s ──┤', route.method, route.path);
+        console.log('├── Route [%s] %s ──┤', route.method, route.path);
       });
     },
 

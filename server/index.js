@@ -47,15 +47,8 @@ app.use(cors({
 // Gzip compression (needs to be before static to compress assets)
 app.use(compression());
 
-// Mount `/api` to the `api` vhost (unused)
-// This causes issues when matching routes:
-// Example: `/api/endpoint` should be `/endpoint`
-// Should probably write a regex/replace to fix it
-// app.all('/api*', api);
-
-// Virtual Hosts
-app.use(vhost('api.petershih.*', api));
-app.use(vhost('www.petershih.*', www));
+// API Virtual Host
+app.use(vhost(env.API_VHOST, api));
 
 // Fallback to www vhost
 app.all('*', www);

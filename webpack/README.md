@@ -1,1 +1,1 @@
-This directory contains files used by webpack.
+This directory contains files used by Webpack.
