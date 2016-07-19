@@ -12,10 +12,10 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 // Connect to the database
-require('../api/config/db').connect();
+require('./config/db').connect();
 
 // Load API routes
-const routes = require('../api/routes');
+const routes = require('./routes');
 
 // Add morgan token `:id` mapped to `req.id`
 morgan.token('id', (req) => req.id);

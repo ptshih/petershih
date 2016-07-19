@@ -20,15 +20,12 @@ import helmet from 'helmet';
 import compression from 'compression';
 
 // Load environment
-import env from './env';
-// const env = require('./env');
-
 // Load loggers
-import './loggers';
+import { env } from 'nodemigo';
 
 // Virtual hosts
-const api = require('./api.js');
-const www = require('./app.js');
+const api = require('./api/server.js');
+const www = require('./www/server.js');
 
 // Create Express App
 const app = express();

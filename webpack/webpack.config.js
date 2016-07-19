@@ -37,7 +37,7 @@ module.exports = {
   devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
 
   // Context for `entry`
-  context: path.resolve(__dirname, '..', 'src'),
+  context: path.resolve(__dirname, '..', 'www'),
 
   entry: {
     app: appEntry,

@@ -3,39 +3,18 @@ import portrait from './pt-hironan.jpg';
 
 // import _ from 'lodash';
 import React from 'react';
-import { Link } from 'react-router';
 import Helmet from 'react-helmet';
+// import { Link } from 'react-router';
 
 // Redux
-import { connect } from 'react-redux';
-import { mapStateToProps, mapDispatchToProps, selector } from './redux';
+import { asyncConnect } from 'redux-connect';
+// import { mapStateToProps, mapDispatchToProps, selector } from './redux';
 
 // http://techcrunch.com/2014/02/05/celery-2m/
 
 export class Root extends React.Component {
   static propTypes = {
     contact: React.PropTypes.object,
-  }
-
-  static fetchData({ store, params, location, refresh }) {
-    // Already fetched and not refreshing
-    const state = selector(store.getState());
-    if (!!state.isFetched && !refresh) {
-      return Promise.resolve();
-    }
-
-    return store.dispatch({
-      types: [
-        'FETCH_ROOT_REQUEST',
-        'FETCH_ROOT_SUCCESS',
-        'FETCH_ROOT_FAILURE',
-      ],
-      promise: (api) => {
-        return api.request({
-          path: '/contacts/peter',
-        });
-      },
-    });
   }
 
   getStack() {
@@ -93,7 +72,7 @@ export class Root extends React.Component {
               <div>Previously I was an iOS engineer at <a href="https://www.foursquare.com/">Foursquare</a> and <a href="https://www.linkedin.com/">LinkedIn</a>.</div>
             </div>
             <div className="m-b-1">
-              <div>I mostly code in JavaScript now – preferring Node and React.</div>
+              <div>I mostly code in JavaScript now – preferring <strong>Node</strong> and <strong>React</strong>.</div>
               <div>I also have a lot of experience with iOS – both native and hybrid apps.</div>
             </div>
             <div className="m-b-1">
@@ -134,4 +113,9 @@ export class Root extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Root);
+export default asyncConnect([{
+  key: 'contact',
+  promise: ({ params, helpers }) => helpers.api.request({
+    path: '/contacts/peter',
+  }),
+}])(Root);

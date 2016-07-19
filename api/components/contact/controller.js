@@ -1,5 +1,5 @@
 import jsonfile from 'jsonfile';
-import Controller from 'modules/controller';
+import { Controller } from 'nodemigo';
 import Model from './model';
 
 module.exports = class ContactController extends Controller {

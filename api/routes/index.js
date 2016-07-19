@@ -1,7 +1,7 @@
 import winston from 'winston';
 const logger = winston.loggers.get('api');
 
-import Router from 'modules/router';
+import { Router } from 'nodemigo';
 
 // Controllers
 const ContactController = require('../components/contact/controller');

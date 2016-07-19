@@ -26,7 +26,7 @@ require('css-modules-require-hook')({
   generateScopedName: process.env.NODE_ENV === 'production' ?
     '[hash:base64]' :
     '[name]---[local]---[hash:base64:5]',
-  rootDir: './src',
+  rootDir: './www',
   extensions: ['.scss'],
 });
 

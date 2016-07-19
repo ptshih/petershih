@@ -24,10 +24,10 @@ import helmet from 'helmet';
 import favicon from 'serve-favicon';
 
 // Load environment
-import env from './env';
+import { env } from 'nodemigo';
 
-import render from './universal';
-// import render from './spa';
+// Render React
+import render from './render.jsx';
 
 // Create proxy server
 const proxy = httpProxy.createProxyServer();
@@ -61,7 +61,7 @@ app.use('/', express.static(path.join(__dirname, '../public'), {
   maxAge: 0,
 }));
 
-// Mount assets route
+// Mount assets route and render app
 if (env.NODE_ENV !== 'production') {
   // Proxy routes to webpack-dev-server
   app.all('/assets/*', (req, res) => {
@@ -75,14 +75,15 @@ if (env.NODE_ENV !== 'production') {
   proxy.on('error', (err) => {
     console.error('Could not connect to Webpack with error: %s', err.message);
   });
+
+  app.use(render(env).spa);
 } else {
   // Serve from compiled assets
   app.use('/assets', express.static(path.join(__dirname, '../assets'), {
     maxAge,
   }));
-}
 
-// Render app
-app.use(render(env));
+  app.use(render(env).universal);
+}
 
 module.exports = app;

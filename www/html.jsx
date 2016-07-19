@@ -61,20 +61,25 @@ const Index = (props) => {
   //   );
   // }
 
+  const htmlAttributes = props.head ? props.head.htmlAttributes.toComponent() : null;
+  const title = props.head ? props.head.title.toComponent() : null;
+  const meta = props.head ? props.head.meta.toComponent() : null;
+  const link = props.head ? props.head.link.toComponent() : null;
+
   return (
-    <html {...props.head.htmlAttributes.toComponent()}>
+    <html {...htmlAttributes}>
       <head>
-        {props.head.title.toComponent()}
+        {title}
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        {props.head.meta.toComponent()}
+        {meta}
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
         <link rel="author" href="/humans.txt" />
-        {props.head.link.toComponent()}
+        {link}
         {getCSS()}
       </head>
 

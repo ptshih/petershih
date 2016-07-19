@@ -14,8 +14,8 @@ const sharedPlugins = [
   // https://github.com/sporto/assets-webpack-plugin#options
   new AssetsPlugin({
     path: path.resolve(__dirname, '../assets'),
-    filename: 'manifest.js',
-    processOutput: x => `module.exports = ${JSON.stringify(x)};`,
+    filename: 'manifest.json',
+    // processOutput: x => `module.exports = ${JSON.stringify(x)};`,
   }),
 
   // Assign the module and chunk ids by occurrence count

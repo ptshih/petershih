@@ -6,7 +6,8 @@
     "assets",
     "public",
     "test",
-    "workers"
+    "workers",
+    "www"
   ],
   "ext": "js jsx json"
 }

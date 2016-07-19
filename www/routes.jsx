@@ -23,7 +23,7 @@ function onEnterNotFound(nextState, replace, callback) {
 }
 
 const Routes = (
-  <Route path="/" component={App}>
+  <Route path="/" component={App} title="Peter Shih" description="Chief Trolling Officer">
     {/* Default */}
     <IndexRoute component={Root} onEnter={onEnter} />
 
